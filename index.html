@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md. Asif Rahman - Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #BB86FC;
+      --secondary: #03DAC6;
+      --surface: #1E1E1E;
+      --background: #121212;
+      --text-primary: #FFFFFF;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: var(--text-primary);
+    }
+    body {
+      background-color: var(--background);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .left-column {
+      position: sticky;
+      top: 1rem;
+      height: min-content;
+      display: grid;
+      gap: 1.5rem;
+    }
+    .right-column {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .profile {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--surface);
+      border-radius: 16px;
+    }
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 1.75rem;
+      margin: 0.5rem 0;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section {
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    }
+    .section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 1rem;
+    }
+    .tech-stack {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+    .tech-stack span {
+      background: rgba(187, 134, 252, 0.1);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: var(--text-primary);
+      border: 1px solid rgba(187, 134, 252, 0.3);
+    }
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .project-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      color: var(--text-primary);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--secondary);
+    }
+    .language-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--text-primary);
+    }
+    .contact-info {
+      display: grid;
+      gap: 0.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .contact-item i {
+      font-size: 0.875rem;
+      min-width: 20px;
+      color: var(--secondary);
+    }
+    .contact-item div {
+      overflow: hidden;
+    }
+    .contact-item h3 {
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    .contact-item p,
+    .contact-item a {
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    button {
+      background: var(--primary);
+      color: var(--text-primary);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(187, 134, 252, 0.3);
+    }
+    .education-container {
+      position: relative;
+      padding-left: 20px;
+      margin-top: 0.75rem;
+    }
+    .education-item {
+      position: relative;
+      padding: 1rem 0;
+      display: flex;
+      gap: 1rem;
+      color: var(--text-primary);
+    }
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--secondary);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 5px;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 5px;
+      top: 20px;
+      width: 2px;
+      height: calc(100% + 1rem);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .education-item:last-child .timeline-line {
+      display: none;
+    }
+    .education-content {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 12px;
+      color: var(--text-primary);
+    }
+    .education-date {
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    a {
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--secondary);
+    }
+    .project-meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--secondary);
+    }
+    .project-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .loading-spinner {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--secondary);
+      width: 16px;
+      height: 16px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .error-card {
+      background: rgba(255, 0, 0, 0.1) !important;
+      border: 1px solid rgba(255, 0, 0, 0.3);
+    }
+    @media (max-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .left-column {
+        position: static;
+      }
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 0.75rem;
+      }
+      .tech-stack {
+        grid-template-columns: 1fr;
+      }
+      .profile img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-grid">
+      <!-- Left Column -->
+      <div class="left-column">
+        <div class="profile">
+          <img src="profile_pic.jpg" alt="Profile Picture" />
+          <h1>Md. Asif Rahman</h1>
+          <p>Computer Science and Engineering</p>
+          <button>Download Resume <a href="cv.pdf" download="Md_Asif_Rahman_CV.pdf" class="download-btn"><i class="fas fa-download"></i></button>
+        </div>
+        <section class="section">
+          <h2>Contact Information</h2>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h3>Location</h3>
+                <p>Dhaka, Bangladesh</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-github"></i>
+              <div>
+                <h3>GitHub</h3>
+                <a href="https://github.com/asif-ethmoid" target="_blank">asif-ethmoid</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <div>
+                <h3>LinkedIn</h3>
+                <a href="YOUR_LINKEDIN_URL" target="_blank">linkedin.com/in/yourprofile</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-kaggle"></i>
+              <div>
+                <h3>Kaggle</h3>
+                <a href="https://www.kaggle.com/asifrahman981" target="_blank">kaggle.com/asifrahman981</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <p>asifrahman981@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <h2>Technical Skills</h2>
+          <div class="tech-stack">
+            <span>C++</span>
+            <span>Python</span>
+            <span>Java</span>
+            <span>React.js</span>
+            <span>Node.js</span>
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>MySQL</span>
+            <span>Git</span>
+            <span>Linux</span>
+          </div>
+        </section>
+      </div>
+      <!-- Right Column -->
+      <div class="right-column">
+        <section class="section">
+          <h2>Featured Projects</h2>
+          <div class="projects-container" id="projects-container">
+            <!-- Projects will be dynamically loaded here -->
+          </div>
+        </section>
+        <section class="section">
+          <h2>Education</h2>
+          <div class="education-container">
+            <div class="education-item">
+              <div class="education-timeline">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="education-content">
+                <span class="education-date">2021 - Present</span>
+                <h3>B.Sc. in Computer Science and Engineering</h3>
+                <p>Ahsanullah University of Science and Technology</p>
+                <span class="location">Dhaka, Bangladesh</span>
+              </div>
+            </div>
+            <div class="education-item">
+              <div class="education-timeline">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="education-content">
+                <span class="education-date">2018 - 2020</span>
+                <h3>Higher Secondary (HSC)</h3>
+                <p>Notre Dame College</p>
+                <span class="location">Dhaka, Bangladesh</span>
+              </div>
+            </div>
+            <div class="education-item">
+              <div class="education-timeline">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="education-content">
+                <span class="education-date">2008 - 2018</span>
+                <h3>Secondary School (SSC)</h3>
+                <p>Ideal School and College</p>
+                <span class="location">Dhaka, Bangladesh</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script>
+    const GITHUB_USERNAME = 'asif-ethmoid';
+    const PROJECTS_CONTAINER = document.getElementById('projects-container');
+    const CACHE_TIME = 60 * 60 * 1000; // 1 hour cache
+
+    // Simple caching function using localStorage
+    async function fetchWithCache(url) {
+      const cacheKey = `gh-cache-${btoa(url)}`;
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const { data, timestamp } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_TIME) return data;
+      }
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('API error');
+        const data = await response.json();
+        localStorage.setItem(cacheKey, JSON.stringify({ data, timestamp: Date.now() }));
+        return data;
+      } catch (error) {
+        if (cached) return JSON.parse(cached).data; // Fallback to stale cache
+        throw error;
+      }
+    }
+
+    async function loadGitHubProjects() {
+      try {
+        // Show loading state
+        PROJECTS_CONTAINER.innerHTML = `
+          <div class="project-card">
+            <div class="language-badge"><div class="loading-spinner"></div></div>
+            <div class="project-content">
+              <h3>Loading Projects</h3>
+              <p>Fetching data from GitHub...</p>
+            </div>
+          </div>
+        `;
+        const [repos, events] = await Promise.all([
+          fetchWithCache(`https://api.github.com/users/${GITHUB_USERNAME}/repos`),
+          fetchWithCache(`https://api.github.com/users/${GITHUB_USERNAME}/events`)
+        ]);
+        // Clear container
+        PROJECTS_CONTAINER.innerHTML = '';
+
+        // Add Railway 3.0 project manually (static entry)
+        const railwayCard = createProjectCard({
+          name: 'railways3.0',
+          html_url: 'https://github.com/mhtafhim/railways3.0',
+          description: 'Railway management system prototype',
+          stargazers_count: 2,
+          forks_count: 1,
+          language: 'Java'
+        });
+        PROJECTS_CONTAINER.appendChild(railwayCard);
+
+        // Add personal projects (excluding forks and Railway 3.0)
+        repos.forEach(repo => {
+          if (!repo.fork && repo.name.toLowerCase() !== 'railways3.0') {
+            PROJECTS_CONTAINER.appendChild(createProjectCard(repo));
+          }
+        });
+
+        // Add contributed projects (only if not owned by you and not "railways3.0")
+        const contributedRepos = new Set();
+        events.forEach(event => {
+          if (event.repo) {
+            const [owner, repoName] = event.repo.name.split('/');
+            if (owner !== GITHUB_USERNAME && repoName.toLowerCase() !== 'railways3.0') {
+              contributedRepos.add(event.repo.name);
+            }
+          }
+        });
+        contributedRepos.forEach(repoName => {
+          const card = createProjectCard({
+            name: repoName.split('/')[1],
+            html_url: `https://github.com/${repoName}`,
+            description: 'Contributed project'
+          });
+          PROJECTS_CONTAINER.appendChild(card);
+        });
+
+      } catch (error) {
+        console.error('Error:', error);
+        PROJECTS_CONTAINER.innerHTML = `
+          <div class="project-card error-card">
+            <div class="language-badge"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="project-content">
+              <h3>Error Loading Projects</h3>
+              <p>Please try refreshing the page</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function createProjectCard(repo) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+        <div class="language-badge">${repo.language || 'Multi'}</div>
+        <a href="${repo.html_url}" target="_blank">
+          ${getRepoIcon(repo)}
+          <div class="project-content">
+            <h3>${formatName(repo.name)}</h3>
+            <p>${repo.description || 'No description available'}</p>
+            <div class="project-meta">
+              <span><i class="fas fa-star"></i> ${repo.stargazers_count || 0}</span>
+              <span><i class="fas fa-code-branch"></i> ${repo.forks_count || 0}</span>
+            </div>
+          </div>
+        </a>
+      `;
+      return card;
+    }
+
+    function formatName(name) {
+      return name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    function getRepoIcon(repo) {
+      const lowerName = repo.name.toLowerCase();
+      if (lowerName.includes('android')) return '<i class="fab fa-android"></i>';
+      if (lowerName.includes('game')) return '<i class="fas fa-gamepad"></i>';
+      if (repo.language) {
+        if (repo.language === 'JavaScript') return '<i class="fab fa-js-square"></i>';
+        if (repo.language === 'Python') return '<i class="fab fa-python"></i>';
+        if (repo.language === 'Java') return '<i class="fab fa-java"></i>';
+      }
+      return '<i class="fas fa-code"></i>';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadGitHubProjects);
+  </script>
+</body>
+</html>
